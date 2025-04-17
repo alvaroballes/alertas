@@ -53,7 +53,7 @@ async def analizar_secciones(request: AnalisisRequest):
     for descripcion in request.secciones:
         messages = [
             {"role": "system", "content": "Eres un asistente experto en análisis de promociones y portafolios de productos."},
-            {"role": "user", "content": f"{request.prompt}
+            {"role": "user", "content": f"{request.prompt}\n\nTexto:\n{descripcion}"}
 
 Texto:
 {descripcion}"}
