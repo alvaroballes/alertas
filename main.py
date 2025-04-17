@@ -5,7 +5,6 @@ from typing import List
 from bs4 import BeautifulSoup
 import openai
 import email
-import io
 
 app = FastAPI()
 
@@ -52,11 +51,14 @@ async def analizar_secciones(request: AnalisisRequest):
     resultados = []
     for descripcion in request.secciones:
         messages = [
-            {"role": "system", "content": "Eres un asistente experto en análisis de promociones y portafolios de productos."},
-            {"role": "user", "content": f"{request.prompt}\n\nTexto:\n{descripcion}"}
-
-Texto:
-{descripcion}"}
+            {
+                "role": "system",
+                "content": "Eres un asistente experto en análisis de promociones y portafolios de productos."
+            },
+            {
+                "role": "user",
+                "content": f"{request.prompt}\n\nTexto:\n{descripcion}"
+            }
         ]
         response = openai.ChatCompletion.create(
             model="gpt-4",
